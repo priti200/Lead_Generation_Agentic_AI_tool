@@ -29,8 +29,10 @@ if __name__=="__main__":
         output_data = {
             "event_type": "lead_analyzed",
             "lead_id": data["lead_id"],
-            "lead": data["lead"],
-            "responses": data["responses"],
+            "name": data["lead"]["name"],
+            "phone": data["lead"]["phone"],
+            "email": data["lead"]["email"],
+            # "responses": data["responses"],
             "analysis": analysis_result,
             "ai_score": final_score,
             "crm_category": crm_category

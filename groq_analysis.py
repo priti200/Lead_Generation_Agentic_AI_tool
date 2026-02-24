@@ -26,14 +26,15 @@ if not api_key:
 client = Groq(api_key=api_key)
 def analyze_with_groq(data):
     """
-    Analyze structured lead response.
+    Analyze structured lead response from bolna_summary_transcript.json.
     """
 
-    lead = data["lead"]
-    responses = data["responses"]
-    faqs = data["course_context"]["faqs"]
+    summary = data["summary"]
+    transcript = data["transcript"]
 
     prompt = f"""
+lead name: Ajay
+
 You are an AI Lead Qualification Agent.
 
 Analyze the following structured lead interaction and return ONLY valid JSON with:
@@ -45,17 +46,11 @@ Analyze the following structured lead interaction and return ONLY valid JSON wit
 - faq_engagement_level (low / medium / high)
 - overall_interest_score (1 to 10 integer)
 
-Lead Name: {lead["name"]}
+Summary:
+{summary}
 
-Responses:
-Interest: {responses["interest"]}
-Affordability: {responses["affordability"]}
-Timeline: {responses["timeline"]}
-Followup Permission: {responses["followup_permission"]}
-FAQ Questions Asked: {responses["faq_questions"]}
-
-Available Course FAQs:
-{faqs}
+Transcript:
+{transcript}
 
 Return ONLY JSON.
 """

@@ -1,5 +1,6 @@
 import json
 import os
+import subprocess
 from preprocess import clean_text
 from groq_analysis import analyze_with_groq
 from scoring import calculate_final_score
@@ -16,6 +17,12 @@ def read_input(filename):
 
 
 if __name__=="__main__":
+    # Run bolna.py first
+    print("Running bolna.py...")
+    subprocess.run(["python", "bolna/bolna.py"], check=True)
+    print("bolna.py executed successfully.")
+
+    # Process files in the mock_inputs folder
     files = os.listdir(Input_folder)
     for file in files:
         data = read_input(file)

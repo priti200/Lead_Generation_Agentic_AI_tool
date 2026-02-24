@@ -1,6 +1,6 @@
 def decide_crm_category(score):
     """
-    Maps AI score (0–10) to CRM storage category.
+    Maps AI score (0-10) to CRM storage category.
     """
 
     if score >= 8:

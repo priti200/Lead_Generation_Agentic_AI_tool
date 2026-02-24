@@ -6,7 +6,7 @@ import time
 def main():
     # Initialize BolnaCall with required parameters
     agent_id = "a83ecf8f-4d03-4a72-9d4e-98692c8e757f"
-    recipient_phone_number = "+918590351989"
+    recipient_phone_number = "+919072242443"
     auth_token = "bn-3cab50fdf99b4f85909e7fcd465f76b5"
 
     bolna_call = BolnaCall(agent_id, recipient_phone_number, auth_token)
@@ -27,11 +27,13 @@ def main():
         print(e)
         return
 
+    bolna_fetch = BolnaFetch(execution_id, auth_token)
+
     # Wait until the status is 'completed' or 'busy'
     while status not in ["completed", "busy"]:
         print(f"Current status: {status}. Waiting...")
         time.sleep(30)  # Delay for 30 seconds before checking again
-        call_response = bolna_call.make_call()  # Recheck the status
+        call_response = bolna_fetch.fetch_output()  # Recheck the status
         try:
             call_response_data = json.loads(call_response)
             status = call_response_data.get("status")
@@ -40,7 +42,6 @@ def main():
             return
 
     # Initialize BolnaFetch with the extracted execution_id
-    bolna_fetch = BolnaFetch(execution_id, auth_token)
     try:
         fetch_response = bolna_fetch.fetch_output()
         print("Fetch Response:", fetch_response)

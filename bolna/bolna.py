@@ -2,6 +2,8 @@ from bolna_call import BolnaCall
 from bolna_fetch import BolnaFetch
 import json
 import time
+import subprocess
+import os
 
 def main():
     # Initialize BolnaCall with required parameters
@@ -47,6 +49,13 @@ def main():
         print("Fetch Response:", fetch_response)
     except Exception as e:
         print(f"Error fetching output: {e}")
+
+    # Assuming bolna_response.json is created earlier in the script
+    response_file = "mock_inputs/bolna_response.json"
+    if os.path.exists(response_file):
+        print("bolna_response.json created. Running convert_summary_transcript.py...")
+        subprocess.run(["python", "convert_summary_transcript.py"], check=True)
+        print("convert_summary_transcript.py executed successfully.")
 
 if __name__ == "__main__":
     main()

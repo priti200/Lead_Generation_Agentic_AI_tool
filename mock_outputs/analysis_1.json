@@ -1,0 +1,17 @@
+{
+    "event_type": "lead_analyzed",
+    "lead_id": 1,
+    "name": "Ajay",
+    "phone": "+918590351989",
+    "email": "abc@mail.com",
+    "analysis": {
+        "intent_level": "medium",
+        "budget_fit": "moderate",
+        "timeline_readiness": "later",
+        "followup_ready": false,
+        "faq_engagement_level": "medium",
+        "overall_interest_score": 6
+    },
+    "ai_score": 5.6,
+    "crm_category": "Contact in Future"
+}

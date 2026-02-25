@@ -57,3 +57,12 @@ if __name__=="__main__":
             json.dump(output_data, f, indent=4)
 
         print("Final JSON saved at:", output_file_path)
+        try:
+            # Send the JSON directly to CRM via crm.crm_push.send_payload
+            from crm import crm_push
+
+            resp = crm_push.send_payload(output_data)
+            print("Lead created successfully.")
+            print("Lead ID:", resp.get("id"))
+        except Exception as e:
+            print("Error sending to CRM:", e)

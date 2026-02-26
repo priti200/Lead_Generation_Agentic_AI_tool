@@ -91,14 +91,14 @@ def prepare_payload(lead_payload: dict) -> dict:
 
     # Remap keys to match CRM labels (user-requested label names)
     key_map = {
-        "intent_level": "intentlevel",
-        "budget_fit": "budgetfit",
-        "timeline_readiness": "timeline_readiness",
-        "followup_ready": "followupready",
-        "faq_engagement_level": "faqengagementlevel",
-        "overall_interest_score": "overall_interest_score",
-        "ai_score": "aiscore",
-        "crm_category": "crmcategory",
+        "intent_level": "intentLevel",
+        "budget_fit": "budgetFit",
+        "timeline_readiness": "timelineReadiness",
+        "followup_ready": "followupReady",
+        "faq_engagement_level": "faqEngagementLevel",
+        "overall_interest_score": "overallInterestScore",
+        "ai_score": "aiScore",
+        "crm_category": "crmCategory",
     }
 
     for old_key, new_key in key_map.items():

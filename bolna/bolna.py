@@ -34,7 +34,7 @@ def main():
     # Wait until the status is 'completed' or 'busy'
     while status not in ["completed", "busy"]:
         print(f"Current status: {status}. Waiting...")
-        time.sleep(30)  # Delay for 30 seconds before checking again
+        time.sleep(2)  # Delay for 30 seconds before checking again
         call_response = bolna_fetch.fetch_output()  # Recheck the status
         try:
             call_response_data = json.loads(call_response)
@@ -47,6 +47,14 @@ def main():
     try:
         fetch_response = bolna_fetch.fetch_output()
         print("Fetch Response:", fetch_response)
+        # Persist the raw Bolna response so the converter can read it
+        os.makedirs("mock_inputs", exist_ok=True)
+        try:
+            parsed = json.loads(fetch_response)
+        except Exception:
+            parsed = fetch_response
+        with open("mock_inputs/bolna_response.json", "w", encoding="utf-8") as fh:
+            json.dump(parsed, fh, indent=2, ensure_ascii=False)
     except Exception as e:
         print(f"Error fetching output: {e}")
 
@@ -54,7 +62,7 @@ def main():
     response_file = "mock_inputs/bolna_response.json"
     if os.path.exists(response_file):
         print("bolna_response.json created. Running convert_summary_transcript.py...")
-        subprocess.run(["python", "convert_summary_transcript.py"], check=True)
+        subprocess.run(["python", "bolna/convert_summary_transcript.py"], check=True)
         print("convert_summary_transcript.py executed successfully.")
 
 if __name__ == "__main__":

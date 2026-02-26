@@ -17,8 +17,8 @@ def extract_summary_and_transcript(input_file, output_file):
         result = {
             "lead_id": 1,
               "lead": {
-            "name": "Ajay",
-            "phone": "+918590351989",
+            "name": "Saketh",
+            "phone": "+919072242443",
             "email": "abc@mail.com"
             },
             "summary": data.get("summary"),
@@ -34,7 +34,7 @@ def extract_summary_and_transcript(input_file, output_file):
         print(f"An error occurred: {e}")
 
 # Define file paths
-input_file = "bolna/bolna_response.json"
+input_file = "mock_inputs/bolna_response.json"
 output_file = "mock_inputs/lead1.json"
 
 # Run the extraction

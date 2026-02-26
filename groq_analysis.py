@@ -33,7 +33,6 @@ def analyze_with_groq(data):
     transcript = data["transcript"]
 
     prompt = f"""
-lead name: Ajay
 
 You are an AI Lead Qualification Agent.
 
